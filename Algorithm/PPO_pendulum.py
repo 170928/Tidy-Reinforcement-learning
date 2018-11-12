@@ -43,10 +43,10 @@ class ActorNetwork(object):
         action = tf.clip_by_value(action, -2, 2)
         return action
 
-    def get_neglogp(self, obs, act, reuse=False):
+    def get_logp(self, obs, act, reuse=False):
         pd = self.step(obs, reuse)
-        neglogp = pd.prob(act)
-        return neglogp
+        logp = pd.log_prob(act)
+        return logp
 
 
 class ValueNetwork(object):
@@ -85,9 +85,9 @@ class PPO(object):
 
         self.action = actor.choose_action(self.OBS)
         self.neglogp = actor.get_neglogp(self.OBS, self.ACT, reuse=True)
-        ratio = self.neglogp / self.NEGLOGP * self.ADV
-        clip_ratio = tf.clip_by_value(ratio, 1. - self.clip_range, 1. + self.clip_range) * self.ADV
-        actor_loss = -tf.reduce_mean(tf.minimum(ratio, clip_ratio))
+        ratio = self.neglogp / self.NEGLOGP
+        clip_ratio = tf.clip_by_value(ratio, 1. - self.clip_range, 1. + self.clip_range)
+        actor_loss = -tf.reduce_mean((tf.minimum(ratio, clip_ratio)) * self.ADV)
         self.actor_train_op = tf.train.AdamOptimizer(self.lr_actor).minimize(actor_loss)
 
         self.value = value.get_value(self.OBS)
@@ -159,16 +159,3 @@ for i_episode in range(nepisode):
             agent.learn(last_value, done)
 
     print('Ep: %i' % i_episode, "|Ep_r: %i" % ep_rwd)
-
-
-
-
-
-
-
-
-
-
-
-
-
