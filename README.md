@@ -17,6 +17,7 @@ We used open-gym cartpoles (for discrete tasks), mountain car (for continous tas
 * Deep Q Network (DQN) for cartpole (discrete task)
 * Deep Deterministic Policy Gradient (DDPG) for pendulum (continuous task)
 * Hindsight Experience Replay for coin flipping (discrete task),,,(imperfect...!!!)
+* Soft Actor-Critic (SAC) for pendulum (continuous task)
 
 
 ## Papers / Pseudo Codes of RL Algorithms
@@ -26,6 +27,7 @@ We used open-gym cartpoles (for discrete tasks), mountain car (for continous tas
 * Deep Q-learning Network (DQN) [[Paper]](https://arxiv.org/abs/1312.5602) [[Pseudo Code]](./Pseudo_code/DQN.png)
 * Deep Deterministic Policy Gradient (DDPG) [[Paper]](https://arxiv.org/abs/1509.02971) [[Pseudo Code]](./Pseudo_code/DDPG.png)
 * Hindsight Experience Replay (HER) [[Paper]](https://arxiv.org/abs/1707.01495) [[Pseudo Code]](./Pseudo_code/HER.png)
+* Soft Actor-Critic (SAC) [[Paper]](https://arxiv.org/abs/1801.01290) [[Pseudo Code]](./Pseudo_code/SAC.png)
 
 
 ## Compare the Following Algorithms
@@ -35,6 +37,7 @@ We used open-gym cartpoles (for discrete tasks), mountain car (for continous tas
 * PG (cartpole) vs DQN (cartpole)
 * A2C (pendulum) vs DDPG (pendulum)
 * DQN (cartpole) vs HER (coin)
+* PPO (pendulum) vs SAC (pendulum)
 
 
 ## Some Tips in Realistic Development
@@ -53,5 +56,6 @@ pip install -r requirements.txt
 ```
 
 ## Inspired by
-* [OpenAI - Baselines](https://github.com/openai/baselines)
+* [OpenAI - Spinning Up](https://github.com/openai/spinningup)
 * [Reinforcement Learning Methods and Tutorials](https://github.com/MorvanZhou/Reinforcement-learning-with-tensorflow)
+* [OpenAI - Baselines](https://github.com/openai/baselines)
